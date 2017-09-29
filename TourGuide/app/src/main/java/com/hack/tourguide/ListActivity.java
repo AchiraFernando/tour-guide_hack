@@ -41,7 +41,7 @@ public class ListActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.list_main);
 
         listView = (ListView) findViewById(R.id.list);
         adapter = new CustomListAdapter(this, movieList);
