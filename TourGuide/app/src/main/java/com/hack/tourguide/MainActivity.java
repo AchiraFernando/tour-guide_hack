@@ -19,6 +19,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -37,6 +38,8 @@ public class MainActivity extends AppCompatActivity implements PlaceSelectionLis
 
     ImageView attractions_but;
 
+    Button _talktoaguide;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,8 +51,17 @@ public class MainActivity extends AppCompatActivity implements PlaceSelectionLis
         call = (FloatingActionButton) findViewById(R.id.call);
         attractions_but = (ImageView) findViewById(R.id.attractions);
 
-        floatButOpen = AnimationUtils.loadAnimation(this, R.anim.floatbutton_open);
-        floatButClose = AnimationUtils.loadAnimation(this, R.anim.floatbutton_close);
+        _talktoaguide = (Button)findViewById(R.id.button2);
+        _talktoaguide.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Intent myIntent = new Intent(getBaseContext(), ListActivity.class);
+                myIntent.putExtra("key", ""); //Optional parameters
+                MainActivity.this.startActivity(myIntent);
+           }
+        });
+//        floatButOpen = AnimationUtils.loadAnimation(this, R.anim.floatbutton_open);
+//        floatButClose = AnimationUtils.loadAnimation(this, R.anim.floatbutton_close);
 
         floatButRotateForward = AnimationUtils.loadAnimation(this, R.anim.rotate_forward);
         floatButRotateBackward = AnimationUtils.loadAnimation(this, R.anim.rotate_backward);
@@ -64,35 +76,35 @@ public class MainActivity extends AppCompatActivity implements PlaceSelectionLis
 
         autocompleteFragment.setBoundsBias(new LatLngBounds(new LatLng(8.270378, 80.365676), new LatLng(8.373810, 80.423482)));
 
-        add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                animateFloatBut();
-            }
-        });
-        message.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                animateFloatBut();
-                Intent myIntent = new Intent(getBaseContext(), ListActivity.class);
-                //myIntent.putExtra("key", value); //Optional parameters
-                MainActivity.this.startActivity(myIntent);
-            }
-        });
-        video.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                animateFloatBut();
-                Toast.makeText(MainActivity.this, "Video float clicked", Toast.LENGTH_SHORT).show();
-            }
-        });
-        call.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                animateFloatBut();
-                Toast.makeText(MainActivity.this, "Call float clicked", Toast.LENGTH_SHORT).show();
-            }
-        });
+//        add.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                animateFloatBut();
+//            }
+//        });
+//        message.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                animateFloatBut();
+//                Intent myIntent = new Intent(getBaseContext(), ListActivity.class);
+//                //myIntent.putExtra("key", value); //Optional parameters
+//                MainActivity.this.startActivity(myIntent);
+//            }
+//        });
+//        video.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                animateFloatBut();
+//                Toast.makeText(MainActivity.this, "Video float clicked", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//        call.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                animateFloatBut();
+//                Toast.makeText(MainActivity.this, "Call float clicked", Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
         attractions_but.setOnClickListener(new View.OnClickListener() {
             @Override
