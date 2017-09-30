@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
-import com.hack.models.Movie;
+import com.hack.models.AttractionsModel;
 import com.hack.tourguide.AppController;
 import com.hack.tourguide.R;
 
@@ -24,22 +24,22 @@ import com.hack.tourguide.R;
 public class CustomListAdapter extends BaseAdapter {
     private Activity activity;
     private LayoutInflater inflater;
-    private List<Movie> movieItems;
+    private List<AttractionsModel> attractionItems;
     ImageLoader imageLoader = AppController.getInstance().getImageLoader();
 
-    public CustomListAdapter(Activity activity, List<Movie> movieItems) {
+    public CustomListAdapter(Activity activity, List<AttractionsModel> attractionItems) {
         this.activity = activity;
-        this.movieItems = movieItems;
+        this.attractionItems = attractionItems;
     }
 
     @Override
     public int getCount() {
-        return movieItems.size();
+        return attractionItems.size();
     }
 
     @Override
     public Object getItem(int location) {
-        return movieItems.get(location);
+        return attractionItems.get(location);
     }
 
     @Override
@@ -60,34 +60,24 @@ public class CustomListAdapter extends BaseAdapter {
             imageLoader = AppController.getInstance().getImageLoader();
         NetworkImageView thumbNail = (NetworkImageView) convertView
                 .findViewById(R.id.thumbnail);
-        TextView title = (TextView) convertView.findViewById(R.id.title);
+        TextView name = (TextView) convertView.findViewById(R.id.name);
         TextView rating = (TextView) convertView.findViewById(R.id.rating);
-        TextView genre = (TextView) convertView.findViewById(R.id.genre);
-        TextView year = (TextView) convertView.findViewById(R.id.releaseYear);
+        TextView description = (TextView) convertView.findViewById(R.id.description);
 
         // getting movie data for the row
-        Movie m = movieItems.get(position);
+        AttractionsModel m = attractionItems.get(position);
 
         // thumbnail image
         thumbNail.setImageUrl(m.getThumbnailUrl(), imageLoader);
 
         // title
-        title.setText(m.getTitle());
+        name.setText(m.getTitle());
 
         // rating
         rating.setText("Rating: " + String.valueOf(m.getRating()));
 
-        // genre
-        String genreStr = "";
-        for (String str : m.getGenre()) {
-            genreStr += str + ", ";
-        }
-        genreStr = genreStr.length() > 0 ? genreStr.substring(0,
-                genreStr.length() - 2) : genreStr;
-        genre.setText(genreStr);
-
         // release year
-        year.setText(String.valueOf(m.getYear()));
+        description.setText(m.getDescription());
 
         return convertView;
     }

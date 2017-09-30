@@ -35,6 +35,7 @@
 
         <TextView
             android:layout_marginLeft="20dp"
+            android:textSize="20dp"
             android:text="seems like you are at "
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_width="wrap_content"
@@ -49,7 +50,7 @@
             android:text="location"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="#fff"
-            android:textSize="20sp"
+            android:textSize="28sp"
             android:textStyle="bold|italic" />
 
     </LinearLayout>
@@ -68,70 +69,103 @@
             android:layout_weight="1"
             android:background="@drawable/attraction_shadding">
 
-            <TextView
-                android:id="@+id/attractions"
+            <ImageView
+                android:id="@+id/imageView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:textStyle="bold"
-                android:textColor="#000"
-                android:layout_alignParentTop="true"
-                android:layout_marginLeft="27dp"
-                android:layout_marginStart="27dp"
-                android:layout_marginTop="41dp"
+                app:srcCompat="@drawable/ic_attractions"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/attractions"
+                android:layout_toStartOf="@+id/attractions"
+                android:layout_marginRight="21dp"
+                android:layout_marginEnd="21dp" />
+
+            <TextView
+                android:id="@+id/attractionsLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="46dp"
+                android:layout_marginRight="46dp"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:text="Attractions"
-                android:textSize="20dp"/>
+                android:textColor="#000"
+                android:textSize="25dp"
+                android:textStyle="bold"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
 
         </RelativeLayout>
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:background="@drawable/transport_shadding">
 
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/ic_travel"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/transport"
+                android:layout_toStartOf="@+id/transport"
+                android:layout_marginRight="18dp"
+                android:layout_marginEnd="18dp" />
+
             <TextView
                 android:id="@+id/transport"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginLeft="27dp"
-                android:layout_marginStart="27dp"
-                android:textStyle="bold"
-                android:textColor="#000"
-                android:layout_marginTop="41dp"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:text="Transport"
-                android:textSize="20dp"/>
+                android:textColor="#000"
+                android:textSize="25dp"
+                android:textStyle="bold"
+                android:layout_marginRight="50dp"
+                android:layout_marginEnd="50dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
 
         </RelativeLayout>
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:background="@drawable/accommodation_shadding">
 
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/ic_hotels"
+                android:layout_marginRight="22dp"
+                android:layout_marginEnd="22dp"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/accommodation"
+                android:layout_toStartOf="@+id/accommodation" />
+
             <TextView
                 android:id="@+id/accommodation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
                 android:textStyle="bold"
                 android:textColor="#000"
-                android:layout_marginLeft="27dp"
-                android:layout_marginStart="27dp"
-                android:layout_marginTop="41dp"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:text="Accommodation"
-                android:textSize="20dp"/>
+                android:textSize="25dp"
+                android:layout_marginRight="47dp"
+                android:layout_marginEnd="47dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
 
         </RelativeLayout>
 
@@ -141,23 +175,95 @@
             android:layout_weight="1"
             android:background="@drawable/emergency_shadding">
 
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/ic_emergency"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/emergency"
+                android:layout_toStartOf="@+id/emergency"
+                android:layout_marginRight="19dp"
+                android:layout_marginEnd="19dp" />
+
             <TextView
                 android:id="@+id/emergency"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginLeft="27dp"
                 android:textStyle="bold"
                 android:textColor="#000"
-                android:layout_marginStart="27dp"
-                android:layout_marginTop="41dp"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:text="Emergency"
-                android:textSize="20dp"/>
+                android:textSize="25dp"
+                android:layout_marginRight="45dp"
+                android:layout_marginEnd="45dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
         </RelativeLayout>
+
     </LinearLayout>
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="@dimen/fab_margin"
+        android:layout_marginRight="@dimen/fab_margin"
+        android:layout_marginBottom="40dp"
+        android:src="@drawable/ic_bino"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="@dimen/fab_margin"
+        android:layout_marginRight="@dimen/fab_margin"
+        android:layout_marginBottom="110dp"
+        android:visibility="invisible"
+        android:src="@drawable/ic_textsms_white_24px"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/video"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="@dimen/fab_margin"
+        android:layout_marginRight="@dimen/fab_margin"
+        android:layout_marginBottom="180dp"
+        android:visibility="invisible"
+        android:src="@drawable/ic_videocam_white_24px"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"/>
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/call"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="@dimen/fab_margin"
+        android:layout_marginRight="@dimen/fab_margin"
+        android:layout_marginBottom="250dp"
+        android:visibility="invisible"
+        android:src="@drawable/ic_call_white_24px"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"/>
+
+    <!--<android.support.design.widget.FloatingActionButton-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="bottom|right"-->
+        <!--android:layout_margin="16dp"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--app:layout_anchorGravity="bottom|right|end" />-->
 </RelativeLayout>

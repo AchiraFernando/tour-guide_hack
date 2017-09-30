@@ -10,14 +10,11 @@ import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Attr;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.widget.ListView;
@@ -27,7 +24,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.hack.adapters.CustomListAdapter;
-import com.hack.models.Movie;
+import com.hack.models.*;
 
 public class ListActivity extends AppCompatActivity {
     // Log tag
@@ -36,7 +33,7 @@ public class ListActivity extends AppCompatActivity {
     // Movies json url
     private static final String url = "https://api.androidhive.info/json/movies.json";
     private ProgressDialog pDialog;
-    private List<Movie> movieList = new ArrayList<Movie>();
+    private List<AttractionsModel> attractionsList = new ArrayList<AttractionsModel>();
     private ListView listView;
     private CustomListAdapter adapter;
 
@@ -46,7 +43,7 @@ public class ListActivity extends AppCompatActivity {
         setContentView(R.layout.list_main);
 
         listView = (ListView) findViewById(R.id.list);
-        adapter = new CustomListAdapter(this, movieList);
+        adapter = new CustomListAdapter(this, attractionsList);
         listView.setAdapter(adapter);
 
         pDialog = new ProgressDialog(this);
@@ -73,23 +70,15 @@ public class ListActivity extends AppCompatActivity {
                             try {
 
                                 JSONObject obj = response.getJSONObject(i);
-                                Movie movie = new Movie();
-                                movie.setTitle(obj.getString("title"));
+                                AttractionsModel movie = new AttractionsModel();
+                                movie.setTitle(obj.getString("name"));
                                 movie.setThumbnailUrl(obj.getString("image"));
                                 movie.setRating(((Number) obj.get("rating"))
                                         .doubleValue());
-                                movie.setYear(obj.getInt("releaseYear"));
 
-                                // Genre is json array
-                                JSONArray genreArry = obj.getJSONArray("genre");
-                                ArrayList<String> genre = new ArrayList<String>();
-                                for (int j = 0; j < genreArry.length(); j++) {
-                                    genre.add((String) genreArry.get(j));
-                                }
-                                movie.setGenre(genre);
-
+                                movie.setDescription(obj.getString("description"));
                                 // adding movie to movies array
-                                movieList.add(movie);
+                                attractionsList.add(movie);
 
                             } catch (JSONException e) {
                                 e.printStackTrace();
