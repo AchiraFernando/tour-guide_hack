@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements PlaceSelectionLis
     boolean isOpen = false;
 
     ImageView attractions_but, transport_but, emergency_but, accommodation_but;
-    TextView attractionsLabel;
+    TextView attractionsLabel, mapslabel;
 
     int PLACE_AUTOCOMPLETE_REQUEST_CODE = 1;
      Button city;
@@ -67,7 +67,15 @@ public class MainActivity extends AppCompatActivity implements PlaceSelectionLis
 //        accommodation_but = (ImageView) findViewById(R.id.accommodationImg);
 
         attractionsLabel = (TextView) findViewById(R.id.attractionsLabel);
-
+        mapslabel = (TextView) findViewById(R.id.transport);
+        mapslabel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent attractionIntent = new Intent(MainActivity.this, MapActivity.class);
+                attractionIntent.putExtra("key", "Attractions");
+                MainActivity.this.startActivity(attractionIntent);
+            }
+        });
 
 
         city = (Button) findViewById(R.id.city);
@@ -98,6 +106,16 @@ public class MainActivity extends AppCompatActivity implements PlaceSelectionLis
                 MainActivity.this.startActivity(attractionIntent);
             }
         });
+
+        attractionsLabel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent attractionIntent = new Intent(MainActivity.this, ListActivity.class);
+                attractionIntent.putExtra("key", "Attractions");
+                MainActivity.this.startActivity(attractionIntent);
+            }
+        });
+
 
         add.setOnClickListener(new View.OnClickListener() {
             @Override
