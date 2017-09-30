@@ -14,10 +14,15 @@ import org.w3c.dom.Attr;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
+import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -33,9 +38,13 @@ public class ListActivity extends AppCompatActivity {
     // Movies json url
     private static final String url = "https://api.androidhive.info/json/movies.json";
     private ProgressDialog pDialog;
-    private List<AttractionsModel> attractionsList = new ArrayList<AttractionsModel>();
+    private List<AttractionsModel> attractionsList = new ArrayList<>();
     private ListView listView;
     private CustomListAdapter adapter;
+
+    FloatingActionButton add, message, video, call;
+    Animation floatButOpen, floatButClose, floatButRotateForward, floatButRotateBackward;
+    boolean isOpen = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +60,44 @@ public class ListActivity extends AppCompatActivity {
         pDialog.setMessage("Loading...");
         pDialog.show();
 
+        add = (FloatingActionButton) findViewById(R.id.add);
+        message = (FloatingActionButton) findViewById(R.id.message);
+        video = (FloatingActionButton) findViewById(R.id.video);
+        call = (FloatingActionButton) findViewById(R.id.call);
 
+        floatButOpen = AnimationUtils.loadAnimation(this, R.anim.floatbutton_open);
+        floatButClose = AnimationUtils.loadAnimation(this, R.anim.floatbutton_close);
+
+        floatButRotateForward = AnimationUtils.loadAnimation(this, R.anim.rotate_forward);
+        floatButRotateBackward = AnimationUtils.loadAnimation(this, R.anim.rotate_backward);
+
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                animateFloatBut();
+            }
+        });
+        message.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                animateFloatBut();
+                Toast.makeText(ListActivity.this, "Message float clicked", Toast.LENGTH_SHORT).show();
+            }
+        });
+        video.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                animateFloatBut();
+                Toast.makeText(ListActivity.this, "Video float clicked", Toast.LENGTH_SHORT).show();
+            }
+        });
+        call.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                animateFloatBut();
+                Toast.makeText(ListActivity.this, "Call float clicked", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         // changing action bar color
 //       getSupportActionBar().setBackgroundDrawable(
@@ -101,6 +147,28 @@ public class ListActivity extends AppCompatActivity {
 
         // Adding request to request queue
         AppController.getInstance().addToRequestQueue(movieReq);
+    }
+
+    private void animateFloatBut() {
+        if (isOpen) {
+            add.startAnimation(floatButRotateBackward);
+            message.startAnimation(floatButClose);
+            video.startAnimation(floatButClose);
+            call.startAnimation(floatButClose);
+            message.setClickable(false);
+            video.setClickable(false);
+            call.setClickable(false);
+            isOpen = false;
+        }else {
+            add.startAnimation(floatButRotateForward);
+            message.startAnimation(floatButOpen);
+            video.startAnimation(floatButOpen);
+            call.startAnimation(floatButOpen);
+            message.setClickable(true);
+            video.setClickable(true);
+            call.setClickable(true);
+            isOpen = true;
+        }
     }
 
     @Override
