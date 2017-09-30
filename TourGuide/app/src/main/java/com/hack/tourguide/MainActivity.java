@@ -19,6 +19,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.api.Status;
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements PlaceSelectionLis
     Animation floatButOpen, floatButClose, floatButRotateForward, floatButRotateBackward;
     boolean isOpen = false;
 
+    ImageView attractions_but;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +46,7 @@ public class MainActivity extends AppCompatActivity implements PlaceSelectionLis
         message = (FloatingActionButton) findViewById(R.id.message);
         video = (FloatingActionButton) findViewById(R.id.video);
         call = (FloatingActionButton) findViewById(R.id.call);
+        attractions_but = (ImageView) findViewById(R.id.attractions);
 
         floatButOpen = AnimationUtils.loadAnimation(this, R.anim.floatbutton_open);
         floatButClose = AnimationUtils.loadAnimation(this, R.anim.floatbutton_close);
@@ -59,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements PlaceSelectionLis
         // occurred.
         autocompleteFragment.setOnPlaceSelectedListener(this);
 
-        autocompleteFragment.setBoundsBias(new LatLngBounds(new LatLng(8.270378, 80.365676),new LatLng(8.373810, 80.423482)));
+        autocompleteFragment.setBoundsBias(new LatLngBounds(new LatLng(8.270378, 80.365676), new LatLng(8.373810, 80.423482)));
 
         add.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,6 +91,15 @@ public class MainActivity extends AppCompatActivity implements PlaceSelectionLis
             public void onClick(View view) {
                 animateFloatBut();
                 Toast.makeText(MainActivity.this, "Call float clicked", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        attractions_but.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent attractionIntent = new Intent(MainActivity.this, Details.class);
+                attractionIntent.putExtra("key", getPlace());
+                MainActivity.this.startActivity(attractionIntent);
             }
         });
     }
@@ -122,7 +134,9 @@ public class MainActivity extends AppCompatActivity implements PlaceSelectionLis
         Toast.makeText(this, "Place Selected: " + place.getName(),
                 Toast.LENGTH_SHORT).show();
 
-        // Format the returned place's details and display them in the TextView.
+        setPlace(place);
+
+        // Format the returned place's Details and display them in the TextView.
         //mPlaceDetailsText.setText(formatPlaceDetails(getResources(), place.getName(), place.getId(),
                // place.getAddress(), place.getPhoneNumber(), place.getWebsiteUri()));
 
@@ -177,4 +191,15 @@ public class MainActivity extends AppCompatActivity implements PlaceSelectionLis
 
         return super.onOptionsItemSelected(item);
     }
+
+    String place;
+
+    public String getPlace() {
+        return this.place;
+    }
+    public void setPlace(Place place) {
+        this.place = place.getName().toString();
+    }
+
+
 }
