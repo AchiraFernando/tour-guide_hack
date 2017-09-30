@@ -45,7 +45,6 @@ public class MainActivity extends AppCompatActivity implements PlaceSelectionLis
     Button city;
     ImageView attractions_but;
 
-    Button _talktoaguide;
     int PLACE_AUTOCOMPLETE_REQUEST_CODE = 1;
 
 
