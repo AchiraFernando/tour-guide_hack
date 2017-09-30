@@ -16,6 +16,8 @@ import android.app.ProgressDialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.widget.ListView;
@@ -27,7 +29,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.hack.adapters.CustomListAdapter;
 import com.hack.models.Movie;
 
-public class ListActivity extends Activity {
+public class ListActivity extends AppCompatActivity {
     // Log tag
     private static final String TAG = MainActivity.class.getSimpleName();
 
@@ -52,9 +54,12 @@ public class ListActivity extends Activity {
         pDialog.setMessage("Loading...");
         pDialog.show();
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
         // changing action bar color
-        getActionBar().setBackgroundDrawable(
-                new ColorDrawable(Color.parseColor("#1b1b1b")));
+//       getSupportActionBar().setBackgroundDrawable(
+//                new ColorDrawable(Color.parseColor("#1b1b1b")));
 
         // Creating volley request obj
         JsonArrayRequest movieReq = new JsonArrayRequest(url,

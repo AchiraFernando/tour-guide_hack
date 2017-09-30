@@ -1,6 +1,7 @@
 package com.hack.tourguide;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
@@ -70,7 +71,9 @@ public class MainActivity extends AppCompatActivity implements PlaceSelectionLis
             @Override
             public void onClick(View view) {
                 animateFloatBut();
-                Toast.makeText(MainActivity.this, "Message float clicked", Toast.LENGTH_SHORT).show();
+                Intent myIntent = new Intent(getBaseContext(), ListActivity.class);
+                //myIntent.putExtra("key", value); //Optional parameters
+                MainActivity.this.startActivity(myIntent);
             }
         });
         video.setOnClickListener(new View.OnClickListener() {
