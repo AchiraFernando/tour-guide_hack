@@ -50,7 +50,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ListActivity"
-            android:label="ListActivity" />
+            android:label="@string/attractions" />
         <activity android:name=".MainActivity2"></activity>
     </application>
 

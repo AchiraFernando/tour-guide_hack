@@ -36,7 +36,7 @@ public class ListActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
 
     // Movies json url
-    private static final String url = "https://api.androidhive.info/json/movies.json";
+    private static final String url = "https://guidemeserver.herokuapp.com/attraction";
     private ProgressDialog pDialog;
     private List<AttractionsModel> attractionsList = new ArrayList<>();
     private ListView listView;
@@ -118,11 +118,11 @@ public class ListActivity extends AppCompatActivity {
                                 JSONObject obj = response.getJSONObject(i);
                                 AttractionsModel movie = new AttractionsModel();
                                 movie.setTitle(obj.getString("name"));
-                                movie.setThumbnailUrl(obj.getString("image"));
+                                movie.setThumbnailUrl(obj.getString("imageurl"));
                                 movie.setRating(((Number) obj.get("rating"))
                                         .doubleValue());
 
-                                movie.setDescription(obj.getString("description"));
+                                movie.setDescription(obj.getString("description").substring(0, obj.getString("description").length() / 2));
                                 // adding movie to movies array
                                 attractionsList.add(movie);
 
