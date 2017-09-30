@@ -30,6 +30,7 @@ import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.places.AutocompleteFilter;
 import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.PlaceDetectionApi;
 import com.google.android.gms.location.places.ui.PlaceAutocomplete;
 import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
 import com.google.android.gms.location.places.ui.PlaceSelectionListener;
@@ -56,6 +57,8 @@ public class MainActivity extends AppCompatActivity implements PlaceSelectionLis
         message = (FloatingActionButton) findViewById(R.id.message);
         video = (FloatingActionButton) findViewById(R.id.video);
         call = (FloatingActionButton) findViewById(R.id.call);
+
+
 //        attractions_but = (ImageView) findViewById(R.id.attractions);
 //        transport_but = (ImageView) findViewById(R.id.transport);
 //        emergency_but = (ImageView) findViewById(R.id.emergencyImg);
@@ -237,7 +240,7 @@ public class MainActivity extends AppCompatActivity implements PlaceSelectionLis
                 // Get the user's selected place from the Intent.
                 Place place = PlaceAutocomplete.getPlace(this, data);
                 Log.i("", "Place Selected: " + place.getName());
-
+                city.setText(place.getName());
                 // Format the place's details and display them in the TextView.
 //                mPlaceDetailsText.setText(formatPlaceDetails(getResources(), place.getName(),
 //                        place.getId(), place.getAddress(), place.getPhoneNumber(),
