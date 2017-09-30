@@ -42,7 +42,12 @@ public class MainActivity extends AppCompatActivity implements PlaceSelectionLis
     Animation floatButOpen, floatButClose, floatButRotateForward, floatButRotateBackward;
     boolean isOpen = false;
 
+<<<<<<< HEAD
     ImageView attractions_but, transport_but, emergency_but, accommodation_but;
+=======
+    Button city;
+    ImageView attractions_but;
+>>>>>>> 2f84c52a2bb81edb30984061ac20391fa7e13d81
 
     Button _talktoaguide;
     int PLACE_AUTOCOMPLETE_REQUEST_CODE = 1;
