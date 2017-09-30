@@ -34,6 +34,7 @@ import com.google.android.gms.location.places.PlaceDetectionApi;
 import com.google.android.gms.location.places.ui.PlaceAutocomplete;
 import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
 import com.google.android.gms.location.places.ui.PlaceSelectionListener;
+import com.google.android.gms.maps.LocationSource;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 
@@ -44,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements PlaceSelectionLis
     boolean isOpen = false;
 
     ImageView attractions_but, transport_but, emergency_but, accommodation_but;
+    TextView attractionsLabel;
 
     int PLACE_AUTOCOMPLETE_REQUEST_CODE = 1;
      Button city;
@@ -64,6 +66,10 @@ public class MainActivity extends AppCompatActivity implements PlaceSelectionLis
 //        emergency_but = (ImageView) findViewById(R.id.emergencyImg);
 //        accommodation_but = (ImageView) findViewById(R.id.accommodationImg);
 
+        attractionsLabel = (TextView) findViewById(R.id.attractionsLabel);
+
+
+
         city = (Button) findViewById(R.id.city);
         city.setBackground(null);
         city.setOnClickListener(new View.OnClickListener(){
@@ -74,51 +80,60 @@ public class MainActivity extends AppCompatActivity implements PlaceSelectionLis
         });
 
 
-//        floatButOpen = AnimationUtils.loadAnimation(this, R.anim.floatbutton_open);
-//        floatButClose = AnimationUtils.loadAnimation(this, R.anim.floatbutton_close);
-//
-//        floatButRotateForward = AnimationUtils.loadAnimation(this, R.anim.rotate_forward);
-//        floatButRotateBackward = AnimationUtils.loadAnimation(this, R.anim.rotate_backward);
+        floatButOpen = AnimationUtils.loadAnimation(this, R.anim.floatbutton_open);
+        floatButClose = AnimationUtils.loadAnimation(this, R.anim.floatbutton_close);
+
+        floatButRotateForward = AnimationUtils.loadAnimation(this, R.anim.rotate_forward);
+        floatButRotateBackward = AnimationUtils.loadAnimation(this, R.anim.rotate_backward);
 
 
-        // Register a listener to receive callbacks when a place has been selected or an error has
-        // occurred.
+//         Register a listener to receive callbacks when a place has been selected or an error has
+//         occurred.
 
-//        add.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                animateFloatBut();
-//            }
-//        });
-//        message.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                animateFloatBut();
-//                Intent myIntent = new Intent(getBaseContext(), ListActivity.class);
-//                //myIntent.putExtra("key", value); //Optional parameters
-//                MainActivity.this.startActivity(myIntent);
-//            }
-//        });
-//        video.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                animateFloatBut();
-//                Toast.makeText(MainActivity.this, "Video float clicked", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//        call.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                animateFloatBut();
-//                Toast.makeText(MainActivity.this, "Call float clicked", Toast.LENGTH_SHORT).show();
-//            }
-//        });
+        attractionsLabel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent attractionIntent = new Intent(MainActivity.this, ListActivity.class);
+                attractionIntent.putExtra("key", "Attractions");
+                MainActivity.this.startActivity(attractionIntent);
+            }
+        });
+
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                animateFloatBut();
+            }
+        });
+        message.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                animateFloatBut();
+                Intent myIntent = new Intent(getBaseContext(), ListActivity.class);
+                //myIntent.putExtra("key", value); //Optional parameters
+                MainActivity.this.startActivity(myIntent);
+            }
+        });
+        video.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                animateFloatBut();
+                Toast.makeText(MainActivity.this, "Video float clicked", Toast.LENGTH_SHORT).show();
+            }
+        });
+        call.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                animateFloatBut();
+                Toast.makeText(MainActivity.this, "Call float clicked", Toast.LENGTH_SHORT).show();
+            }
+        });
 
 //        attractions_but.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
 //                Intent attractionIntent = new Intent(MainActivity.this, ListActivity.class);
-//                attractionIntent.putExtra("key", "Attractions");
+//                attractionIntent.putExtra("key", "AttractionsModel");
 //                MainActivity.this.startActivity(attractionIntent);
 //            }
 //        });
