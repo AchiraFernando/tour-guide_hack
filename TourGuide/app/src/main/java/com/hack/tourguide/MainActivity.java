@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements PlaceSelectionLis
     Animation floatButOpen, floatButClose, floatButRotateForward, floatButRotateBackward;
     boolean isOpen = false;
 
-    ImageView attractions_but;
+    ImageView attractions_but, transport_but, emergency_but, accommodation_but;
 
     Button _talktoaguide;
 
@@ -50,6 +50,9 @@ public class MainActivity extends AppCompatActivity implements PlaceSelectionLis
         video = (FloatingActionButton) findViewById(R.id.video);
         call = (FloatingActionButton) findViewById(R.id.call);
         attractions_but = (ImageView) findViewById(R.id.attractions);
+        transport_but = (ImageView) findViewById(R.id.transport);
+        emergency_but = (ImageView) findViewById(R.id.emergencyImg);
+        accommodation_but = (ImageView) findViewById(R.id.accommodationImg);
 
         _talktoaguide = (Button)findViewById(R.id.button2);
         _talktoaguide.setOnClickListener(new View.OnClickListener(){
@@ -76,42 +79,66 @@ public class MainActivity extends AppCompatActivity implements PlaceSelectionLis
 
         autocompleteFragment.setBoundsBias(new LatLngBounds(new LatLng(8.270378, 80.365676), new LatLng(8.373810, 80.423482)));
 
-//        add.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                animateFloatBut();
-//            }
-//        });
-//        message.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                animateFloatBut();
-//                Intent myIntent = new Intent(getBaseContext(), ListActivity.class);
-//                //myIntent.putExtra("key", value); //Optional parameters
-//                MainActivity.this.startActivity(myIntent);
-//            }
-//        });
-//        video.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                animateFloatBut();
-//                Toast.makeText(MainActivity.this, "Video float clicked", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//        call.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                animateFloatBut();
-//                Toast.makeText(MainActivity.this, "Call float clicked", Toast.LENGTH_SHORT).show();
-//            }
-//        });
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                animateFloatBut();
+            }
+        });
+        message.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                animateFloatBut();
+                Intent myIntent = new Intent(getBaseContext(), ListActivity.class);
+                //myIntent.putExtra("key", value); //Optional parameters
+                MainActivity.this.startActivity(myIntent);
+            }
+        });
+        video.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                animateFloatBut();
+                Toast.makeText(MainActivity.this, "Video float clicked", Toast.LENGTH_SHORT).show();
+            }
+        });
+        call.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                animateFloatBut();
+                Toast.makeText(MainActivity.this, "Call float clicked", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         attractions_but.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent attractionIntent = new Intent(MainActivity.this, MapActivity.class);
-                attractionIntent.putExtra("key", getPlace());
+                Intent attractionIntent = new Intent(MainActivity.this, ListActivity.class);
+                attractionIntent.putExtra("key", "Attractions");
                 MainActivity.this.startActivity(attractionIntent);
+            }
+        });
+        transport_but.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent transportIntent = new Intent(MainActivity.this, ListActivity.class);
+                transportIntent.putExtra("key", "Transport");
+                MainActivity.this.startActivity(transportIntent);
+            }
+        });
+        emergency_but.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent emergencyIntent = new Intent(MainActivity.this, ListActivity.class);
+                emergencyIntent.putExtra("key", "Emergency");
+                MainActivity.this.startActivity(emergencyIntent);
+            }
+        });
+        accommodation_but.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent accommodationIntent = new Intent(MainActivity.this, ListActivity.class);
+                accommodationIntent.putExtra("key", "Accommodation");
+                MainActivity.this.startActivity(accommodationIntent);
             }
         });
     }
