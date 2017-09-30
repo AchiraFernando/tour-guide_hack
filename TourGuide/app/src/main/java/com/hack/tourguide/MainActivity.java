@@ -21,10 +21,16 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.common.GoogleApiAvailability;
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.common.api.Status;
+import com.google.android.gms.location.places.AutocompleteFilter;
 import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.ui.PlaceAutocomplete;
 import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
 import com.google.android.gms.location.places.ui.PlaceSelectionListener;
 import com.google.android.gms.maps.model.LatLng;
@@ -36,9 +42,12 @@ public class MainActivity extends AppCompatActivity implements PlaceSelectionLis
     Animation floatButOpen, floatButClose, floatButRotateForward, floatButRotateBackward;
     boolean isOpen = false;
 
+    Button city;
     ImageView attractions_but;
 
     Button _talktoaguide;
+    int PLACE_AUTOCOMPLETE_REQUEST_CODE = 1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,60 +60,55 @@ public class MainActivity extends AppCompatActivity implements PlaceSelectionLis
         call = (FloatingActionButton) findViewById(R.id.call);
         attractions_but = (ImageView) findViewById(R.id.attractions);
 
-        _talktoaguide = (Button)findViewById(R.id.button2);
-        _talktoaguide.setOnClickListener(new View.OnClickListener(){
+        city = (Button) findViewById(R.id.city);
+        city.setBackground(null);
+        city.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                Intent myIntent = new Intent(getBaseContext(), ListActivity.class);
-                myIntent.putExtra("key", ""); //Optional parameters
-                MainActivity.this.startActivity(myIntent);
-           }
+                openAutocompleteActivity();
+            }
         });
-//        floatButOpen = AnimationUtils.loadAnimation(this, R.anim.floatbutton_open);
-//        floatButClose = AnimationUtils.loadAnimation(this, R.anim.floatbutton_close);
+
+
+        floatButOpen = AnimationUtils.loadAnimation(this, R.anim.floatbutton_open);
+        floatButClose = AnimationUtils.loadAnimation(this, R.anim.floatbutton_close);
 
         floatButRotateForward = AnimationUtils.loadAnimation(this, R.anim.rotate_forward);
         floatButRotateBackward = AnimationUtils.loadAnimation(this, R.anim.rotate_backward);
 
-        // Retrieve the PlaceAutocompleteFragment.
-        PlaceAutocompleteFragment autocompleteFragment = (PlaceAutocompleteFragment)
-                getFragmentManager().findFragmentById(R.id.autocomplete_fragment);
 
         // Register a listener to receive callbacks when a place has been selected or an error has
         // occurred.
-        autocompleteFragment.setOnPlaceSelectedListener(this);
 
-        autocompleteFragment.setBoundsBias(new LatLngBounds(new LatLng(8.270378, 80.365676), new LatLng(8.373810, 80.423482)));
-
-//        add.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                animateFloatBut();
-//            }
-//        });
-//        message.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                animateFloatBut();
-//                Intent myIntent = new Intent(getBaseContext(), ListActivity.class);
-//                //myIntent.putExtra("key", value); //Optional parameters
-//                MainActivity.this.startActivity(myIntent);
-//            }
-//        });
-//        video.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                animateFloatBut();
-//                Toast.makeText(MainActivity.this, "Video float clicked", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//        call.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                animateFloatBut();
-//                Toast.makeText(MainActivity.this, "Call float clicked", Toast.LENGTH_SHORT).show();
-//            }
-//        });
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                animateFloatBut();
+            }
+        });
+        message.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                animateFloatBut();
+                Intent myIntent = new Intent(getBaseContext(), ListActivity.class);
+                //myIntent.putExtra("key", value); //Optional parameters
+                MainActivity.this.startActivity(myIntent);
+            }
+        });
+        video.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                animateFloatBut();
+                Toast.makeText(MainActivity.this, "Video float clicked", Toast.LENGTH_SHORT).show();
+            }
+        });
+        call.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                animateFloatBut();
+                Toast.makeText(MainActivity.this, "Call float clicked", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         attractions_but.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,6 +118,33 @@ public class MainActivity extends AppCompatActivity implements PlaceSelectionLis
                 MainActivity.this.startActivity(attractionIntent);
             }
         });
+    }
+
+
+    private void openAutocompleteActivity() {
+        try {
+            // The autocomplete activity requires Google Play Services to be available. The intent
+            // builder checks this and throws an exception if it is not the case.
+
+            AutocompleteFilter typeFilter = new AutocompleteFilter.Builder()
+                    .setTypeFilter(AutocompleteFilter.TYPE_FILTER_CITIES).setCountry("LK").build();
+            Intent intent = new PlaceAutocomplete.IntentBuilder(PlaceAutocomplete.MODE_FULLSCREEN).setFilter(typeFilter)
+                    .build(this);
+            startActivityForResult(intent, PLACE_AUTOCOMPLETE_REQUEST_CODE);
+        } catch (GooglePlayServicesRepairableException e) {
+            // Indicates that Google Play Services is either not installed or not up to date. Prompt
+            // the user to correct the issue.
+            GoogleApiAvailability.getInstance().getErrorDialog(this, e.getConnectionStatusCode(),
+                    0 /* requestCode */).show();
+        } catch (GooglePlayServicesNotAvailableException e) {
+            // Indicates that Google Play Services is not available and the problem is not easily
+            // resolvable.
+            String message = "Google Play Services is not available: " +
+                    GoogleApiAvailability.getInstance().getErrorString(e.errorCode);
+
+            Log.e("", message);
+            Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void animateFloatBut() {
@@ -171,6 +202,38 @@ public class MainActivity extends AppCompatActivity implements PlaceSelectionLis
                 Toast.LENGTH_SHORT).show();
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        // Check that the result was from the autocomplete widget.
+        if (requestCode == PLACE_AUTOCOMPLETE_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                // Get the user's selected place from the Intent.
+                Place place = PlaceAutocomplete.getPlace(this, data);
+                Log.i("", "Place Selected: " + place.getName());
+
+                // Format the place's details and display them in the TextView.
+//                mPlaceDetailsText.setText(formatPlaceDetails(getResources(), place.getName(),
+//                        place.getId(), place.getAddress(), place.getPhoneNumber(),
+//                        place.getWebsiteUri()));
+//
+//                // Display attributions if required.
+//                CharSequence attributions = place.getAttributions();
+//                if (!TextUtils.isEmpty(attributions)) {
+//                    mPlaceAttribution.setText(Html.fromHtml(attributions.toString()));
+//                } else {
+//                    mPlaceAttribution.setText("");
+//                }
+//            } else if (resultCode == PlaceAutocomplete.RESULT_ERROR) {
+//                Status status = PlaceAutocomplete.getStatus(this, data);
+//                Log.e(TAG, "Error: Status = " + status.toString());
+//            } else if (resultCode == RESULT_CANCELED) {
+//                // Indicates that the activity closed before a selection was made. For example if
+//                // the user pressed the back button.
+//            }
+            }}
+    }
     /**
      * Helper method to format information about a place nicely.
      */
