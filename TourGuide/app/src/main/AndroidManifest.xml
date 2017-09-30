@@ -3,10 +3,10 @@
     package="com.hack.tourguide">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:name=".AppController"
@@ -31,27 +31,27 @@
         </activity>
         <activity
             android:name=".Attractions"
-            android:label="@string/attractions"></activity>
+            android:label="@string/attractions" />
         <activity
             android:name=".MapActivity"
-            android:label="@string/attractions"></activity>
+            android:label="@string/attractions" />
         <activity
             android:name=".Transport"
-            android:label="@string/transport"></activity>
+            android:label="@string/transport" />
         <activity
             android:name=".Emergency"
-            android:label="@string/emergency"></activity>
+            android:label="@string/emergency" />
         <activity
             android:name=".Accommodation"
-            android:label="@string/accommodation"></activity>
+            android:label="@string/accommodation" />
         <activity
             android:name=".Details"
             android:label="@string/title_activity_details"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ListActivity"
-            android:label="ListActivity"
-            ></activity>
+            android:label="ListActivity" />
+        <activity android:name=".MainActivity2"></activity>
     </application>
 
 </manifest>

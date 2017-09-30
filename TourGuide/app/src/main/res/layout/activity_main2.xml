@@ -4,41 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    tools:context="com.hack.tourguide.MainActivity">
-
-    <android.support.design.widget.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay"
-        app:elevation="0dp"
-        android:id="@+id/toolbar_layout">
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay"
-            app:title="@string/app_name"/>
-
-
-    </android.support.design.widget.AppBarLayout>
+    tools:context="com.hack.tourguide.MainActivity2">
 
     <LinearLayout
-        android:layout_below="@id/toolbar_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
         android:orientation="horizontal"
         android:id="@+id/linearLayout">
 
         <TextView
-            android:layout_marginLeft="20dp"
             android:text="seems like you are at "
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_width="wrap_content"
-            android:textColor="#fff"
+            android:textColor="#000"
             android:layout_height="wrap_content"
             />
 
@@ -48,9 +26,9 @@
             android:layout_height="wrap_content"
             android:text="location"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="#fff"
+            android:textColor="#000"
             android:textSize="20sp"
-            android:textStyle="bold|italic" />
+            android:textStyle="bold" />
 
     </LinearLayout>
 
@@ -133,7 +111,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:background="@drawable/emergency_shadding">
+            android:background="#fff700">
 
             <TextView
                 android:id="@+id/emergency"
@@ -151,5 +129,4 @@
                 android:textSize="20dp"/>
         </RelativeLayout>
     </LinearLayout>
-
 </RelativeLayout>
