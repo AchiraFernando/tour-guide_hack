@@ -3,6 +3,11 @@
     package="com.hack.tourguide">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
     <application
         android:name=".AppController"
         android:allowBackup="true"
@@ -28,6 +33,9 @@
             android:name=".Attractions"
             android:label="@string/attractions"></activity>
         <activity
+            android:name=".MapActivity"
+            android:label="@string/attractions"></activity>
+        <activity
             android:name=".Transport"
             android:label="@string/transport"></activity>
         <activity
@@ -43,7 +51,7 @@
         <activity
             android:name=".ListActivity"
             android:label="ListActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            ></activity>
     </application>
 
 </manifest>

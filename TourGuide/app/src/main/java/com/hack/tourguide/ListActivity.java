@@ -54,8 +54,7 @@ public class ListActivity extends AppCompatActivity {
         pDialog.setMessage("Loading...");
         pDialog.show();
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+
 
         // changing action bar color
 //       getSupportActionBar().setBackgroundDrawable(

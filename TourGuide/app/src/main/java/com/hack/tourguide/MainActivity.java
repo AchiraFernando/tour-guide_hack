@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity implements PlaceSelectionLis
         attractions_but.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent attractionIntent = new Intent(MainActivity.this, Details.class);
+                Intent attractionIntent = new Intent(MainActivity.this, MapActivity.class);
                 attractionIntent.putExtra("key", getPlace());
                 MainActivity.this.startActivity(attractionIntent);
             }
